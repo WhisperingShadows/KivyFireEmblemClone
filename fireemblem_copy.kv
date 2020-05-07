@@ -1,0 +1,47 @@
+#:import win kivy.core.window
+
+<Screen>
+
+<Widget>
+    font_name: 'Resources/Fire_Emblem_Heroes_Font.ttf'
+
+<TitleScreen>:
+    id: Title_Screen
+    ScatterLayout:
+        id: myscatter
+        on_size: self.center = win.Window.center
+        size: root.size
+        scale: 1.5
+        auto_bring_to_front: False
+        on_scale: print(self.scale)
+        do_translation: False
+        do_rotation: False
+        do_scale: False
+        MyImage:
+            id: myimage_title_bg
+            on_size: self.center = win.Window.center
+            on_touch_down: root.manager.current = 'loading_main'
+            source: 'Resources/Images/Bg_Title.png'
+            pos: self.pos
+            size: root.size
+            allow_stretch: True
+            keep_ratio: True
+
+    RelativeLayout:
+        Label:
+            text: 'Start'
+            size_hint: .1, .03
+            pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+
+        Button:
+            text: 'Menu'
+            size_hint: .1, .03
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+
+
+
+<LoadingMainScreen>:
+    BoxLayout:
+        Button:
+            text: 'Back to Title'
+            on_press: root.manager.current = 'title'
